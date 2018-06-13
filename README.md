@@ -25,5 +25,5 @@ And test it with [test_model.py](test_model.py)
 The code is also available with comments in a jupyter notebook.
 
 Here the md to see the result of the complete execution:
-1. [train model](jupyther_notebook-md/train_model.md)
-2. [test model](jupyther_notebook-md/test_model.md)
+1. [train model](jupyter_notebook-md/train_model.md)
+2. [test model](jupyter_notebook-md/test_model.md)
