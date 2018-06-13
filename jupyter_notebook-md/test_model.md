@@ -1,3 +1,10 @@
+
+# Test Model with 'real' cases
+
+First of all import all you need to run code.
+
+
+```python
 from keras.preprocessing.image import img_to_array
 from keras.models import load_model
 import os
@@ -6,12 +13,22 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import pandas as pd
 
+```
 
+    Using TensorFlow backend.
+
+
+## Set some variables
+
+1. __root_dir__ -----> is te directory containint the images that the model has to predict
+2. __img_width__, __img_height__ ------> the input shape of the model
+3. __chardict__ ------> a dictionary to give a label to each model output
+
+
+```python
 root_dir = 'work_test'
 
 img_width, img_height = 64, 64
-
-model = load_model('simpsons_model_trained')
 
 chardict = {
  'bart': 0,
@@ -19,10 +36,29 @@ chardict = {
  'lisa': 2,
  'marge': 3
  }
+```
 
+## Load the model
+
+with __ĺoad_model()__ you can simple load up a pre-trained model. We will take the model saved at the end of the [training process](train_model.ipynb).
+
+
+```python
+model = load_model('simpsons_model_trained')
+```
+
+## Cycle for input manipulation and plot creation
+
+We need to create a matplotlib graph showing the result. To do that we define number of rows and column, in thi case (2x3).
+Then with a cycle on rows and colums we feed the graph with 6 images. The images are manipulated in orded to be a correct input for the neural network: they need to be of shape (64, 64, 3) where the first 2 values are the dimensions in x and y and the third (3) is the 'channel' used for color rappresentation; in this case 3 stands for 'RGB'. The result of the network is given by __model.predict()__ and then is manipulated in order to display the 3 best labels by percent of accuracy.
+
+Eventually the graph shows a pretty good result: the network sucesfully recognized all the characters.
+
+
+```python
 rows = 2
 cols = 3
-fig, ax = plt.subplots(rows, cols, frameon=False, figsize=(7, 7))
+fig, ax = plt.subplots(rows, cols, frameon=False, figsize=(12, 12))
 fig.suptitle('work_test images', fontsize=20)
 count=0
 for i in range(rows):
@@ -54,4 +90,8 @@ for i in range(rows):
                 bbox=dict(boxstyle="round", ec=ec, fc=fc, alpha = 0.7))
 plt.setp(ax, xticks=[], yticks=[])
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-plt.show()
+```
+
+
+![png](output_8_0.png)
+

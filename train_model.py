@@ -7,21 +7,8 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-dataset_folder = 'simpsons_dataset'
-
-def load_data(filename, force=False):
-  root = os.path.join(filename)
-  data_folders = [
-    os.path.join(root, d) for d in sorted(os.listdir(root))
-    if os.path.isdir(os.path.join(root, d))]
-  print(data_folders)
-  return data_folders
-  
-data_folders = load_data(dataset_folder)
-
-train_data_dir = os.path.join(dataset_folder, 'simpsons_trainset')
-validation_data_dir = os.path.join(dataset_folder, 'simpson_testset')
+train_data_dir = os.path.join('simpsons_dataset', 'simpsons_trainset')
+validation_data_dir = os.path.join('simpsons_dataset', 'simpson_testset')
 
 img_width, img_height = 64, 64
 nb_train_samples = 30000
@@ -98,6 +85,6 @@ plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
 
-    # Save weights for further use
+# Save weights for further use
 model.save_weights('simpsons_weights.h5')
 model.save('simpsons_model_trained')
