@@ -8,7 +8,7 @@ Here the code and the slides of my talk "Image recognition with keras and tensor
 All you need is a python 3 virtualenv.
 
 From virtualenv install requirements
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
  
